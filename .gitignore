@@ -1,0 +1,7 @@
+*.pyd
+*.c
+*.ipynb
+
+build/
+lib/
+bkp/
