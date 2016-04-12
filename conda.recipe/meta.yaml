@@ -1,0 +1,20 @@
+package:
+  name: gdx-reader
+  version: "0.1.0"
+ 
+source:
+  git_url: ../
+  git_tag: master
+
+requirements:
+  build:
+    - python
+    - cython
+    - numpy
+  run:
+    - python
+    - numpy
+    - pandas
+ 
+about:
+  summary: "Read GDX files fast using the GAMS C API"
