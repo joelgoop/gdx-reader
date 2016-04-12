@@ -13,13 +13,14 @@ from Cython.Build import cythonize
 apidir = 'C:/GAMS/win64/24.5/apifiles/C/api'
 
 ext_modules = [Extension(
-                    "gdxcy",
-                    ["gdxcy.pyx",os.path.join(apidir,"gdxcc.c")],
+                    "gdxr.gdxcy",
+                    ["gdxr/gdxcy.pyx",os.path.join(apidir,"gdxcc.c")],
                     include_dirs = [apidir,np.get_include()]
             )]
 
 setup(
     name = 'gdx-reader',
     version = '0.1.0',
+    packages = ['gdxr'],
     ext_modules = cythonize(ext_modules),
 )
