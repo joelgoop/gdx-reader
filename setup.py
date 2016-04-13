@@ -20,7 +20,7 @@ ext_modules = [Extension(
 
 setup(
     name = 'gdx-reader',
-    version = '0.1.0',
+    version = '0.1.1',
     packages = ['gdxr'],
     ext_modules = cythonize(ext_modules),
 )
