@@ -1,6 +1,19 @@
 cdef extern from "gdxcc.h":
     enum: GMS_SSSIZE
+
     enum: GMS_DT_VAR
+    enum: GMS_DT_SET
+    enum: GMS_DT_PAR
+    enum: GMS_DT_VAR
+    enum: GMS_DT_EQU
+    enum: GMS_DT_ALIAS
+
+    double GMS_SV_UNDEF
+    double GMS_SV_NA
+    double GMS_SV_PINF
+    double GMS_SV_MINF
+    double GMS_SV_EPS
+
     enum: GMS_MAX_INDEX_DIM
 
     enum: GMS_VAL_LEVEL
