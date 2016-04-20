@@ -1,5 +1,5 @@
 import pandas as pd
-from .gdxcy import CFile, CVarOrEqu, CSet, CParameter
+from gdxcy import CFile, CVarOrEqu, CSet, CParameter
 
 
 
