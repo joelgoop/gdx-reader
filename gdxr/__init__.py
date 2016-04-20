@@ -1,1 +1,1 @@
-from reader import GdxFile
+from .reader import GdxFile
