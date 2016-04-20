@@ -1,1 +1,1 @@
-from reader import GdxFile
+from gxdr.reader import GdxFile
