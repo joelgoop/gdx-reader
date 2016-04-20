@@ -49,11 +49,21 @@ cdef class CFile:
 
     def __cinit__(self,gdx_file,gams_dir):
         self.gdx_h = NULL
+        try:
+            gdx_file = gdx_file.encode('utf-8')
+            gams_dir = gams_dir.encode('utf-8')
+        except AttributeError:
+            pass
+        
         assert gdxCreateD(&self.gdx_h, gams_dir, self.msg, GMS_SSSIZE),"GDX library could not be initialized with '{}'".format(gams_dir)
         assert gdxOpenRead(self.gdx_h, gdx_file, &self.status),"GDX file '{}' could not be opened for reading".format(gdx_file)
 
     cpdef CSymbol get_symbol(self,v_name):
         cdef int var_nr, dim, symtype
+        try:
+            v_name = v_name.encode('utf-8')
+        except AttributeError:
+            pass
 
         # Locate symbol
         if gdxFindSymbol(self.gdx_h, v_name, &var_nr)==0:
@@ -84,9 +94,14 @@ cdef class CSymbol:
         gdxStrIndex_t strIndex
         gdxStrIndexPtrs_t sp
         gdxValues_t v
-        str name
+        bytes name
 
     def __cinit__(self,c_file,v_name,var_nr,dim):
+        try:
+            v_name = v_name.encode('utf-8')
+        except AttributeError:
+            pass
+
         self.f = c_file
         self.name = v_name
         self.dim = dim
@@ -133,12 +148,12 @@ cdef class CParameter(CSymbol):
 
         cdef:
             np.ndarray[np.float64_t, ndim=1] out = np.zeros((self.nr_recs,))
-            np.ndarray[object, ndim=2] str_idx = np.empty((self.nr_recs, self.dim),dtype=object)
+            np.ndarray[unicode, ndim=2] str_idx = np.empty((self.nr_recs, self.dim),dtype=object)
             int i,count = 0
 
         while gdxDataReadStr(self.f.gdx_h, self.sp, self.v, &self.f_dim):
             for i in range(self.dim):
-                str_idx[count,i] = self.sp[i]
+                str_idx[count,i] = (<bytes>self.sp[i]).decode('utf-8')
             out[count] = self.v[0]
             count += 1
 

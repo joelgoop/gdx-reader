@@ -1,6 +1,6 @@
 package:
   name: gdx-reader
-  version: "0.2.4"
+  version: "0.2.5"
  
 source:
   git_url: ../
