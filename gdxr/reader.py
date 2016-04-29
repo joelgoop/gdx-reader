@@ -1,19 +1,20 @@
-import pandas as pd
-from .gdxcy import CFile, CVarOrEqu, CSet, CParameter
-
+from .gdxcy import CFile
 
 
 class GamsDirNotFoundException(Exception):
     pass
 
+
 class GdxFile(object):
     """
     Reader object for GDX file.
     """
+
     def __init__(self, path, gams_dir=None):
         self.path = path
-        self.gams_dir = gams_dir if gams_dir is not None else self.find_gams_dir()
-        self._c_file = CFile(path,self.gams_dir)
+        self.gams_dir = gams_dir if gams_dir is not None \
+            else self.find_gams_dir()
+        self._c_file = CFile(path, self.gams_dir)
         self._symbols = {}
 
     def __enter__(self):
@@ -29,13 +30,12 @@ class GdxFile(object):
             self._symbols[key] = self._get_symbol(key)
             return self._symbols[key]
 
-
-    def _get_symbol(self,key,idx_names_types=None):
+    def _get_symbol(self, key, idx_names_types=None):
         c_symbol = self._c_file.get_symbol(key)
         return c_symbol.read(idx_names_types)
 
-    def get(self,key,idx_names_types=None):
-        return self._get_symbol(key,idx_names_types)
+    def get(self, key, idx_names_types=None):
+        return self._get_symbol(key, idx_names_types)
 
     @staticmethod
     def find_gams_dir():
@@ -46,6 +46,7 @@ class GdxFile(object):
             gams_exe = find_executable('gams')
             return os.path.dirname(gams_exe)
         except TypeError:
-            raise GamsDirNotFoundException("Gams directory could not be located. Add to PATH for automatic detection.")
-
-
+            raise GamsDirNotFoundException(
+                "Gams directory could not be located."
+                " Add to PATH for automatic detection."
+            )
