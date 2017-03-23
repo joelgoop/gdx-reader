@@ -3,7 +3,7 @@ package:
   version: "0.2.6"
  
 source:
-  git_url: .
+  git_url: ../
   git_tag: master
 
 requirements:
@@ -19,14 +19,6 @@ requirements:
 build:
   script:
     - python setup.py install
-
-test:
-  files:
-    - test/data/Trnsport.gdx
-  source_files:
-    - test/*.py
-  command:
-    - python run_test.py
 
 about:
   summary: "Read GDX files fast using the GAMS C API"
