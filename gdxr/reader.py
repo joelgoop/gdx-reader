@@ -1,4 +1,6 @@
 from .gdxcy import CFile
+import os
+import errno
 
 
 class GamsDirNotFoundException(Exception):
@@ -12,8 +14,14 @@ class GdxFile(object):
 
     def __init__(self, path, gams_dir=None):
         self.path = path
+
+        if not os.path.isfile(self.path):
+            raise FileNotFoundError(
+                errno.ENOENT, os.strerror(errno.ENOENT), path)
+
         self.gams_dir = gams_dir if gams_dir is not None \
             else self.find_gams_dir()
+
         self._c_file = CFile(path, self.gams_dir)
         self._symbols = {}
 
