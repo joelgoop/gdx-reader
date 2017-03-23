@@ -11,6 +11,9 @@ requirements:
     - python
     - cython
     - numpy
+    - pandas
+    - pytest
+    - pytest-runner
   run:
     - python
     - numpy
@@ -18,7 +21,8 @@ requirements:
  
 build:
   script:
-    - python setup.py install && python setup.py test
+    - python setup.py install
+    - python setup.py test
 
 
 about:
