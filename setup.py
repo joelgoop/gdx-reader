@@ -22,5 +22,9 @@ setup(
     name='gdx-reader',
     version='0.2.6',
     packages=['gdxr'],
-    ext_modules=cythonize(ext_modules)
+    ext_modules=cythonize(ext_modules),
+    url='https://github.com/joelgoop/gdx-reader',
+    author='Joel Goop',
+    author_email='joel.goop@chalmers.se',
+    license='GPLv3',
 )

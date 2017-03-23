@@ -9,7 +9,7 @@ For `gdx-reader` to work, you need:
 
 - A GAMS installation that is sufficiently recent to ship with a compatible version of the C API (has been tested with 24.5).
 - An installation of Python 3.4, 3.5, or 3.6. It will be easiest to use Anaconda, which can be downloaded from https://www.continuum.io/downloads.
-- The Python packages `numpy` and `pandas` (`conda install pandas` should install both).
+- The Python packages `numpy` and `pandas` (these will be automatically installed if `gdx-reader` is installed through Anaconda).
 
 
 ## Installation 
