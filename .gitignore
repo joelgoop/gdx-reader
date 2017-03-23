@@ -1,7 +1,13 @@
 *.pyd
 *.c
 *.ipynb
+*.pyc
+
+*.gpr
+*.gdx
 
 build/
 lib/
 bkp/
+*.sublime-*
+
