@@ -1,6 +1,6 @@
 package:
   name: gdx-reader
-  version: "0.2.6"
+  version: "0.2.7"
  
 source:
   git_url: ../
@@ -18,7 +18,8 @@ requirements:
  
 build:
   script:
-    - python setup.py install
+    - python setup.py install && python setup.py test
+
 
 about:
   summary: "Read GDX files fast using the GAMS C API"

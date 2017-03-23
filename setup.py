@@ -20,11 +20,13 @@ ext_modules = [Extension(
 
 setup(
     name='gdx-reader',
-    version='0.2.6',
+    version='0.2.7',
     packages=['gdxr'],
     ext_modules=cythonize(ext_modules),
     url='https://github.com/joelgoop/gdx-reader',
     author='Joel Goop',
     author_email='joel.goop@chalmers.se',
     license='GPLv3',
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest']
 )
