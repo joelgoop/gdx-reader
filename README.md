@@ -22,7 +22,32 @@ conda install -c goop gdx-reader
 
 ## Basic usage
 
-TODO: Add example
+Read a symbol from the GDX file into python, simply use the `GdxFile` object with the index operator:
+
+```python
+import gdxr
+
+with gdxr.GdxFile("path/to/file.gdx") as f:
+    python_variable = f["symbol_name"]
+```
+
+Note that if the symbol is a set, the object returned will be a `numpy.ndarray` with byte objects. They can easily be converted into Python `str` objects with `python_variable.astype(str)`. If the symbol is a parameter, the returned object will be a `pandas.Series`, with a `pandas.MultiIndex` consisting of all set elements as byte objects. Equation and variables are returned as `pandas.DataFrame`s with the set elements as a `MultiIndex` on the rows and the columns being `level`, `marginal`, `lower`, `upper`, and `scale`. Read more about these objects in the [Pandas documentation](http://pandas.pydata.org/pandas-docs/stable/) and the [Numpy documentation](https://docs.scipy.org/doc/numpy/).
+
+To read the symbol with predetermined types for the set elements, use the `get` function and supply tuples containing index names and types through the `idx_names_types` keyword parameter:
+
+```python
+import gdxr
+
+with gdxr.GdxFile("path/to/file.gdx") as f:
+    python_variable = f.get("symbol_name", idx_names_types=[("country", str), ("timestep", int)])
+```
+
+NB: Supplying the type `str` will give a Python string object instead of the bytes object returned by default.
+
+
+### GAMS directory not found
+
+If your GAMS installation is not added to your PATH system variable `gdx-reader` will not detect it automatically. You can solve that by adding it to your PATH or supplying it when calling `GdxFile`: `GdxFile("path/to/file.gdx", gams_dir="C:/GAMS/win64/24.5")` (the `gams_dir` argument should point to the main folder where `gams.exe` is located).
 
 
 ## Building the conda package including the `cython` extension on Windows
